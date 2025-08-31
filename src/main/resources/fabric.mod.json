@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "seed_sync",
+  "version": "1.0.0",
+  "name": "Seed Sync",
+  "description": "Uploads world names/seeds/dates to your /sync endpoint at launch.",
+  "authors": ["you"],
+  "environment": "client",
+  "entrypoints": {
+    "client": ["dev.you.seedsync.SeedSyncMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.5",
+    "minecraft": ">=1.21"
+  }
+}
