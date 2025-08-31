@@ -1,25 +1,27 @@
-name: Build (Fabric 1.21.x)
+name: Release
 
-on: [push, pull_request]
+on:
+  push:
+    tags:
+      - 'v*'   # e.g., v1.0.0
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
 
-      # Use the wrapper that’s in your repo (more reliable than forcing a Gradle version)
-      - name: Build with Gradle Wrapper
-        run: ./gradlew --no-daemon build
-
-      - name: Upload JAR
-        uses: actions/upload-artifact@v4
+      - uses: gradle/gradle-build-action@v3
         with:
-          name: seed-sync-jar
-          path: build/libs/*.jar
+          gradle-version: 8.8
+          arguments: build
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/libs/*.jar
