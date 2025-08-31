@@ -1,0 +1,32 @@
+plugins {
+  id 'fabric-loom' version '1.7.3'
+  id 'java'
+}
+
+group = 'dev.you'
+version = '1.0.0'
+
+repositories {
+  mavenCentral()
+  maven { url = 'https://maven.fabricmc.net/' }
+}
+
+dependencies {
+  minecraft "com.mojang:minecraft:1.21.1"
+  mappings loom.officialMojangMappings() // use yarn if you prefer
+  modImplementation "net.fabricmc:fabric-loader:0.16.5"
+  // Fabric API not required for this mod; uncomment if you want helpers:
+  // modImplementation "net.fabricmc.fabric-api:fabric-api:0.104.0+1.21.1"
+  implementation 'com.google.code.gson:gson:2.10.1'
+}
+
+java {
+  toolchain { languageVersion = JavaLanguageVersion.of(21) }
+  withSourcesJar()
+}
+
+loom {
+  runs {
+    client { programArg '--username=SeedSync'; }
+  }
+}
