@@ -1,1 +1,9 @@
-rootProject.name = 'seed-sync'
+pluginManagement {
+  repositories {
+    maven { url = "https://maven.fabricmc.net/" }  // Fabric publishes Loom here
+    gradlePluginPortal()                           // Gradle Plugins portal
+    mavenCentral()
+  }
+}
+
+rootProject.name = "seed-sync"
